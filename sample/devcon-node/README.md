@@ -51,8 +51,7 @@ docker compose -p devcon-node cp <転送するファイル> <転送先のファ�
 　例えば、`devcon-node:/home/node/workspace/sample.txt` を Docker ホストの `/home/user001/sample.txt` へ転送する場合は、Docker ホストのターミナルで次のようにします。
 
 ```console
-docker compose -p devcon-node \
-    cp devcon-node:/home/node/workspace/sample.txt /home/user001/sample.txt
+docker compose -p devcon-node cp devcon-node:/home/node/workspace/sample.txt /home/user001/sample.txt
 ```
 
 ## `${localWorkspaceFolder}`
