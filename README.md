@@ -12,8 +12,8 @@
 
 　これ以降、このリポジトリをクローンもしくはアーカイブファイルを展開した `devcon-node` ディレクトリーのパスを `${REPO_DIR}` と表現します。
 
-[!NOTE]
-　なお、Docker Hub に用意されている devcon-node の Docker イメージを手軽に試してみたい場合は、`${REPO_DIR}/sample/devcon-node/README.md` の方を見てください。devcon-node の Docker イメージのようなカスタム Docker イメージの作成に興味がある場合は、このまま読み続けてください。
+> [!NOTE]
+> なお、Docker Hub に用意されている devcon-node の Docker イメージを手軽に試してみたい場合は、`${REPO_DIR}/sample/devcon-node/README.md` の方を見てください。devcon-node の Docker イメージのようなカスタム Docker イメージの作成に興味がある場合は、このまま読み続けてください。
 
 ## devcon-node で解決できること
 
