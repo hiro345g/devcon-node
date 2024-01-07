@@ -1,0 +1,18 @@
+{
+  "name": "devcon-node",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "workspaceFolder": "/workspace",
+  "service": "devcon-node",
+  "shutdownAction": "stopCompose",
+  "remoteEnv": {
+    "DOCKER_HOST_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["ms-azuretools.vscode-docker"]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+name: devcon-node
+services:
+  devcon-node:
+    image: hiro345g/devcon-node:1.20
+    container_name: devcon-node
+    hostname: devcon-node
+    init: true
+    tty: true
+    working_dir: /workspace
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
