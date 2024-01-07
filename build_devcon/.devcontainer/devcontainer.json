@@ -1,0 +1,4 @@
+{
+  "name": "devcon-node-build",
+  "dockerFile": "./Dockerfile"
+}

@@ -1,0 +1,12 @@
+name: devcon-node
+services:
+  devcon-node-build-dev:
+    image: mcr.microsoft.com/devcontainers/typescript-node:20-bookworm
+    container_name: devcon-node-build-dev
+    hostname: devcon-node-build-dev
+    init: true
+    tty: true
+    volumes:
+      - type: bind
+        source: ${SHARE_DIR:-../../workspace_share}
+        target: /share
