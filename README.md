@@ -10,6 +10,10 @@
 - 開発コンテナー内で `git` コマンド、VS Code の Git 関連機能が利用可能
 - `iproute2`、`iputils-ping`、`dnsutils` といったネットワーク管理用コマンドが利用可能
 
+　これ以降、このリポジトリをクローンもしくはアーカイブファイルを展開した `devcon-node` ディレクトリーのパスを `${REPO_DIR}` と表現します。
+
+　なお、Docker Hub に用意されている devcon-node の Docker イメージを手軽に試してみたい場合は、`${REPO_DIR}/sample/devcon-node/README.md` の方を見てください。devcon-node の Docker イメージのようなカスタム Docker イメージの作成に興味がある場合は、このまま読み続けてください。
+
 ## devcon-node で解決できること
 
 　devcon-node を使うと、Docker を利用する Node.js 環境での開発において、基本的に VS Code の開発コンテナー内で開発ができるようになります。これは、開発コンテナー内から Docker ホストの `dockerd` を利用できる `docker` コマンドが使えるからです。
@@ -142,8 +146,6 @@ devcon-node/
 └── sample.env  ... .env ファイルのサンプル
 ```
 
-　この後、リポジトリをクローンもしくはアーカイブファイルを展開した `devcon-node` ディレクトリーのパスを `${DEVCON_NODE_DIR}` と表現します。
-
 ## 使い方
 
 　起動の仕方は、次のどちらかを想定しています。
@@ -162,7 +164,7 @@ devcon-node/
 　それから、docker-compose.yml を使って devcon-node コンテナーを起動します。
 
 ```console
-cd `${DEVCON_NODE_DIR}`
+cd `${REPO_DIR}`
 docker compose up -d
 ```
 
@@ -172,15 +174,15 @@ docker compose up -d
 
 　先に「ビルド」を参照して Docker イメージを作成してください。また、必要なら「環境変数」を参考にして `.env` ファイルを用意してください。
 
-　VS Code を起動してから、F1 キーを入力して VS Code のコマンドパレットを表示してます。入力欄へ「dev containers open」などと入力すると `開発コンテナー:コンテナーでフォルダを開く（英語表記だと Dev Containers: Open Folder in Container...）` が選択肢に表示されます。これをクリックすると、フォルダーを選択する画面になるので `${DEVCON_NODE_DIR}` を指定して開きます。
+　VS Code を起動してから、F1 キーを入力して VS Code のコマンドパレットを表示してます。入力欄へ「dev containers open」などと入力すると `開発コンテナー:コンテナーでフォルダを開く（英語表記だと Dev Containers: Open Folder in Container...）` が選択肢に表示されます。これをクリックすると、フォルダーを選択する画面になるので `${REPO_DIR}` を指定して開きます。
 
-　これで `${DEVCON_NODE_DIR}/.devcontainer/devcontainer.json` の内容にしたがって、devcon-node コンテナーが開発コンテナーとして起動します。このとき、開発コンテナーで使用する拡張機能も追加されます。それから、devcon-node コンテナーに接続した VS Code の画面が表示されます。
+　これで `${REPO_DIR}/.devcontainer/devcontainer.json` の内容にしたがって、devcon-node コンテナーが開発コンテナーとして起動します。このとき、開発コンテナーで使用する拡張機能も追加されます。それから、devcon-node コンテナーに接続した VS Code の画面が表示されます。
 
 　devcon-node コンテナーに接続した VS Code の画面での作業は devcon-node コンテナーのリソースを使うことになります。そのため、この画面でファイルを編集すると、devcon-node コンテナー内のファイルを編集するということになります。
 
-　devcon-node コンテナーでは Docker ホストのファイルを間違えて操作しないように、`${DEVCON_NODE_DIR}` は見えないようにしてあります。devcon-node コンテナーと Docker ホストとの間でファイルをやりとりしたいときは、devcon-node コンテナーの `/share` ディレクトリー（`devcon-node:/share`）を使います。
+　devcon-node コンテナーでは Docker ホストのファイルを間違えて操作しないように、`${REPO_DIR}` は見えないようにしてあります。devcon-node コンテナーと Docker ホストとの間でファイルをやりとりしたいときは、devcon-node コンテナーの `/share` ディレクトリー（`devcon-node:/share`）を使います。
 
-　`devcon-node:/share` は Docker ホスト側の `${DEVCON_NODE_DIR}/workspace_share` にバインドマウントしてあるので、ここにあるファイルは、Docker ホスト側でも使えます。
+　`devcon-node:/share` は Docker ホスト側の `${REPO_DIR}/workspace_share` にバインドマウントしてあるので、ここにあるファイルは、Docker ホスト側でも使えます。
 
 　`devcon-node:/share` を経由しなくても、`docker compose -p devcon-node cp <転送するファイル> <転送先のファイル>` のコマンドを使ってファイル転送をすることもできます。
 
@@ -210,7 +212,7 @@ docker image tag hiro345g/devcon-node:1.20 devcon-node:1.20
 
 ### VS Code を使う方法
 
-　VS Code を起動してから、F1 キーを入力して VS Code のコマンドパレットを表示してます。入力欄へ「dev containers open」などと入力すると `開発コンテナー:コンテナーでフォルダを開く（英語表記だと Dev Containers: Open Folder in Container...）` が選択肢に表示されます。これをクリックすると、フォルダーを選択する画面になるので `${DEVCON_NODE_DIR}/build_devcon` を指定して開きます。
+　VS Code を起動してから、F1 キーを入力して VS Code のコマンドパレットを表示してます。入力欄へ「dev containers open」などと入力すると `開発コンテナー:コンテナーでフォルダを開く（英語表記だと Dev Containers: Open Folder in Container...）` が選択肢に表示されます。これをクリックすると、フォルダーを選択する画面になるので `${REPO_DIR}/build_devcon` を指定して開きます。
 
 　`vsc-build_devcon-` で始まる Docker イメージが作成されてコンテナーが起動します。このコンテナーに対応する `vsc-build_devcon-` で始まる Docker イメージがあるので、それに `devcon-node:1.20` のタグをつけます。
 
@@ -235,7 +237,7 @@ sh /home/node/build_devcon/build.sh
 
 　ここでは、`npm` コマンドが実行できる Node.js 環境として、`devcon-node-build-dev` の開発コンテナーを用意してあるので、これを使います。
 
-　VS Code を起動してから、F1 キーを入力して VS Code のコマンドパレットを表示してます。入力欄へ「dev containers open」などと入力すると `開発コンテナー:コンテナーでフォルダを開く（英語表記だと Dev Containers: Open Folder in Container...）` が選択肢に表示されます。これをクリックすると、フォルダーを選択する画面になるので `${DEVCON_NODE_DIR}/build_devcon/devcon-node-build-dev` を指定して開きます。すると、devcon-node-build-dev コンテナーに接続した VS Code の画面が表示されます。
+　VS Code を起動してから、F1 キーを入力して VS Code のコマンドパレットを表示してます。入力欄へ「dev containers open」などと入力すると `開発コンテナー:コンテナーでフォルダを開く（英語表記だと Dev Containers: Open Folder in Container...）` が選択肢に表示されます。これをクリックすると、フォルダーを選択する画面になるので `${REPO_DIR}/build_devcon/devcon-node-build-dev` を指定して開きます。すると、devcon-node-build-dev コンテナーに接続した VS Code の画面が表示されます。
 
 　次に、Docker ホスト側のターミナルで、`${REPO_DIR}`（`devcon-node` をクローンしたディレクトリー）をカレントディレクトリーとして、次のコマンドで、`build_devcon` を devcon-node-build-dev コンテナーの `/home/node/` へコピーします。
 
@@ -272,15 +274,15 @@ node ➜ ~ $ sh /home/node/build_devcon/build.sh
 
 　Docker ホスト側で使用するディレクトリーを `SHARE_DIR` で指定します。Docker ホスト側に存在するものを指定してください。ここでは、あらかじめ `workspace_share` ディレクトリーを用意してあり、それを使っています。
 
-　なお、これを変更することができるように、環境変数 `SHARE_DIR` を用意してあります。次の例では `${DEVCON_NODE_DIR}/share` ディレクトリーを作成して、それを使うようにしています。
+　なお、これを変更することができるように、環境変数 `SHARE_DIR` を用意してあります。次の例では `${REPO_DIR}/share` ディレクトリーを作成して、それを使うようにしています。
 
 ```sh
-cd ${DEVCON_NODE_DIR}
+cd ${REPO_DIR}
 mkdir share
 echo 'SHARE_DIR=./share' > .env
 ```
 
-　また、`sample.env` も参考にしてください。`sample.env` のコメントにあるように、Docker ホストが Linux なら `devcon-node` をカレントディレクトリーにして下記のようにして .env の用意をすることができます。
+　また、`${REPO_DIR}/sample/sample.env` も参考にしてください。このファイルのコメントにあるように、Docker ホストが Linux なら `devcon-node` をカレントディレクトリーにして下記のようにして .env の用意をすることができます。
 
 ```sh
 echo "SHARE_DIR=$(pwd)/workspace_share" > .env
